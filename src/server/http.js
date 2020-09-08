@@ -2,7 +2,7 @@ import http from 'axios';
 import qs from 'qs';
 // 网页超时时间
 http.defaults.timeout = 5000;
-http.defaults.baseURL = 'http://localhost:3001';
+// http.defaults.baseURL = 'http://152.136.97.184:3000';
 // 请求拦截
 http.interceptors.request.use(config =>{
     if(config.method == 'get' || config.method == 'put'){
@@ -24,13 +24,7 @@ error =>{
 });
 // 响应拦截
 http.interceptors.response.use(res =>{
-    if(res.data.status == 200){
-        console.log('数据响应成功')
-    }
     return res.data;
-},err =>{
-    const errs = new Error(err); 
-    throw errs;
 });
 
 export default http;

@@ -2,11 +2,29 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-import { Button } from 'vant';
-
+import { Button,
+  NavBar,
+  Swipe, 
+  SwipeItem,
+  Lazyload,
+  Tabbar, 
+  TabbarItem,
+  Grid, 
+  GridItem,
+  Card,
+  Tag
+  } from 'vant';
+Vue.use(Card);
+Vue.use(Tag);
 Vue.use(Button);
-
+Vue.use(NavBar);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Lazyload);
+Vue.use(Tabbar);
+Vue.use(TabbarItem);
+Vue.use(Grid);
+Vue.use(GridItem);
 Vue.config.productionTip = false
 
 new Vue({

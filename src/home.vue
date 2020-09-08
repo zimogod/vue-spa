@@ -1,53 +1,86 @@
 <template>
   <div class="home">
-    <div class="head"></div>
-    <div class="content">
-        <div>{{ times }}</div>
-        <div>{{ shijian }}</div>
-        <van-button type="primary">主要按钮</van-button>
-        <van-button type="info">信息按钮</van-button>
-        <van-button type="default">默认按钮</van-button>
-        <van-button type="warning">警告按钮</van-button>
-        <van-button type="danger">危险按钮</van-button>
+    <van-nav-bar
+      title="标题"
+      left-text="返回"
+      right-text="按钮"
+      left-arrow
+    />
+    <div class="loop">
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(image, index) in images" :key="index">
+          <img v-lazy="image.img" />
+        </van-swipe-item>
+      </van-swipe>
     </div>
-    <div class="foot"></div>
+    <div>
+        <van-grid :column-num="3">
+          <router-link v-for="(value,index) in links" :to="{path:value.path}" :key="index">
+            <van-grid-item :icon="value.icon" :text="value.alias" />
+          </router-link>
+        </van-grid> 
+    </div>
+    
   </div>
 </template>
 <script>
+import { listObj } from './server';
 import { formateDate,formateTime } from './utils';
 export default {
   data(){
       return {
-          now:new Date(),
-          times:'',
-          shijian:''
+        links:[
+          {
+            path:'/new-list',
+            icon:'location-o',
+            alias:'新闻资讯'
+          },
+          {
+            path:'/photo-list',
+            icon:'coupon-o',
+            alias:'图片分享'
+          },
+          {
+            path:'/goods-list',
+            icon:'shopping-cart-o',
+            alias:'商品列表'
+          },
+        ],
+        // routes:this.$router.options.routes[0].children,
+        images: [],
+        active:0
       }
   },
+  methods:{
+    // 获取轮播图数据接口
+    getNewsLoop(){
+      listObj.getLoopNews().then(res=>{
+        this.images = res;
+      })
+    }
+  },
   mounted(){
-      let time = formateDate(this.now);
-      let timess = formateTime(this.now,':')
-      this.shijian = timess;
-      this.times = time;
-  }
+      this.getNewsLoop();
+  } 
 };
 </script>
 <style lang="stylus">
 .home
   width 100%
-  height 100%
-  display flex
-  justify-content flex-start
-  flex-flow column nowrap
-  .head
+  height 100vh
+  .van-nav-bar
+    height .8rem
+    background skyblue
+  .loop
     width 100%
-    height 1rem 
-    background red
-  .content
-    width 100%
-    flex 1
-    background url('./assets/logo.png') no-repeat
-  .foot
-    width 100%
-    height 1rem 
-    background red
+    height 2rem
+    .van-swipe
+      width 100%
+      height 100%
+      .van-swipe-item
+        width 100%
+        height 100%
+        img
+          width 100%
+          height 100%
 </style>
