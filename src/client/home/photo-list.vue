@@ -4,28 +4,36 @@
       <span v-for="item in list" :key="item.id" @click="getSortPicture(item.id)">{{item.title}}</span>
     </div>
     <div>
-      <!-- <component></component> -->
+    <!-- 第一种实现方式 -->
+      <com-a :sortList="sortList"></com-a>
+    <!-- 第二种实现方式 -->
+      <!-- <component :is="view" :sortList="sortList"></component> -->
     </div>
   </div>
 </template>
 <script>
 import { listObj } from '../../server';
+import comA from './photo';
 export default {
   data(){
       return {
-        list:[]
+        list:[],
+        sortList:[],
+        view:'comA'
       }
   },
+  components:{comA},
   methods:{
     getPictureNav(){
       listObj.getPhotoPicture().then(res =>{
         res.message.unshift({title:'全部',id:0});
         this.list = res.message;
+        this.sortList = res.message;
       })
     },
     getSortPicture(id){
       listObj.getPhotoPictureSort(id).then(res =>{
-        console.log(res)
+        this.sortList = res.message;
       })
     }
   },
