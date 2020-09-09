@@ -17,10 +17,14 @@ export default {
   },
   methods:{
       searchData(keys){
+        //   listObj.searchWords(keys).then(res =>{
+        //       console.log(res)
+        //   })
           listObj.pinglun(this.newsid,keys).then(res =>{
               console.log(res)
+              Toast.success('评论成功');
           })
-           Toast.success('评论成功');
+           
       },
       getnewsDetails(){
           listObj.newsDetails(this.newsid).then(res =>{
@@ -29,9 +33,7 @@ export default {
       }
   },
   mounted(){
-      console.log(this)
       this.getnewsDetails();
-    //   console.log(this.$route.params.newsid)
   }
 };
 </script>
