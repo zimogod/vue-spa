@@ -7,6 +7,7 @@ import { Button,
   Swipe, 
   SwipeItem,
   Lazyload,
+  Toast,
   Tabbar, 
   TabbarItem,
   Grid, 
@@ -15,6 +16,7 @@ import { Button,
   Tag
   } from 'vant';
 Vue.use(Card);
+Vue.use(Toast);
 Vue.use(Tag);
 Vue.use(Button);
 Vue.use(NavBar);

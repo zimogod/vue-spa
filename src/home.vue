@@ -55,7 +55,7 @@ export default {
     // 获取轮播图数据接口
     getNewsLoop(){
       listObj.getLoopNews().then(res=>{
-        this.images = res;
+        this.images = res.message;
       })
     }
   },
@@ -70,7 +70,6 @@ export default {
   height 100vh
   .van-nav-bar
     height .8rem
-    background skyblue
   .loop
     width 100%
     height 2rem

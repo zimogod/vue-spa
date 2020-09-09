@@ -6,9 +6,9 @@ http.defaults.timeout = 5000;
 // 请求拦截
 http.interceptors.request.use(config =>{
     if(config.method == 'get' || config.method == 'put'){
-        config.headers = {
-            'Content-type':'application/json;charset=utf8'
-        }
+        // config.headers = {
+        //     'Content-type':'application/json;charset=utf8'
+        // }
         config.data = qs.stringify(config.data);
     }else if(config.method == 'post' || config.method == 'delete'){
         config.headers = {
