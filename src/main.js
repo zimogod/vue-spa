@@ -13,9 +13,11 @@ import { Button,
   Grid, 
   GridItem,
   Card,
+  Icon,
   Tag
   } from 'vant';
 Vue.use(Card);
+Vue.use(Icon);
 Vue.use(Toast);
 Vue.use(Tag);
 Vue.use(Button);

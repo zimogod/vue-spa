@@ -23,16 +23,21 @@
     <child :list="lists"></child>
     <child :list="arr"></child>
      <child :list="newArr"></child>
+     <div class="nav">  
+       <list :listdata="list"></list>
+     </div>
   </div>
 </template>
 <script>
+import List from './callback/list';
 import child from './callback/child';
 import { listObj } from './server';
 import { formateDate,formateTime } from './utils';
 export default {
-  components:{child},
+  components:{child,List},
   data(){
       return {
+        list: [],
         newArr:[1,2,3],
         lists:[3,4,5],
         arr:[7,8,9],
@@ -59,6 +64,13 @@ export default {
       }
   },
   methods:{
+    // 获取导航数据
+    getNavData(){
+      listObj.getNav().then(res =>{
+        // console.log(res)
+        this.list = res
+      })
+    },
     // 获取轮播图数据接口
     getNewsLoop(){
       listObj.getLoopNews().then(res=>{
@@ -67,6 +79,7 @@ export default {
     }
   },
   mounted(){
+    this.getNavData()
       this.getNewsLoop();
   } 
 };
@@ -75,6 +88,7 @@ export default {
 .home
   width 100%
   height 100vh
+  font-size 16px
   .van-nav-bar
     height .8rem
   .loop
@@ -89,4 +103,7 @@ export default {
         img
           width 100%
           height 100%
+  .nav
+    width 100%
+    height 4rem
 </style>

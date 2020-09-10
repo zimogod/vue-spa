@@ -16,7 +16,9 @@ export const listObj = {
     // 获取图片导航
     getPhotoPicture: () => http.get(`${baseURL}/getimgcategory`),
     // 图片分类
-    getPhotoPictureSort:(cateid) =>http.get(`${baseURL}/getimages/${cateid}`)
+    getPhotoPictureSort:(cateid) =>http.get(`${baseURL}/getimages/${cateid}`),
+    // 请求嵌套不确定数据
+    getNav:() => http.get('http://localhost:3001/allData')
 }
 
 // 路由动态传参
