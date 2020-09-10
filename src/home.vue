@@ -20,15 +20,22 @@
           </router-link>
         </van-grid> 
     </div>
-    
+    <child :list="lists"></child>
+    <child :list="arr"></child>
+     <child :list="newArr"></child>
   </div>
 </template>
 <script>
+import child from './callback/child';
 import { listObj } from './server';
 import { formateDate,formateTime } from './utils';
 export default {
+  components:{child},
   data(){
       return {
+        newArr:[1,2,3],
+        lists:[3,4,5],
+        arr:[7,8,9],
         links:[
           {
             path:'/new-list',
