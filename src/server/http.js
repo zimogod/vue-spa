@@ -1,5 +1,10 @@
+import Vue from 'vue';
 import http from 'axios';
 import qs from 'qs';
+
+import { Toast } from 'vant';
+
+Vue.use(Toast);
 // 网页超时时间
 http.defaults.timeout = 5000;
 // http.defaults.baseURL = 'http://152.136.97.184:3000';
